@@ -1,15 +1,61 @@
 classDiagram
-    %% Replace the placeholders below with your actual classes, attributes, methods, and relationships.
-    %% Keep this file updated so it matches your final implementation.
+    class Owner {
+        +String name
+        +String email
+        +List~Pet~ pets
 
-    class ClassName {
-        +type attribute
-        +method() returnType
+        +add_pet(pet)
+        +remove_pet(pet_name)
+        +list_pets()
+        +find_pet(pet_name)
+        +get_owner_summary()
     }
 
-    class AnotherClass {
-        +type attribute
-        +method() returnType
+    class Pet {
+        +String name
+        +String species
+        +String breed
+        +int age
+        +List~Task~ tasks
+
+        +add_task(task)
+        +remove_task(task_description)
+        +list_tasks()
+        +list_incomplete_tasks()
+        +find_task(task_description)
+        +get_pet_summary()
     }
 
-    ClassName --> AnotherClass : relationship
+    class Task {
+        +String description
+        +String due_time
+        +String due_date
+        +String priority
+        +int duration_minutes
+        +bool is_complete
+
+        +mark_complete()
+        +mark_incomplete()
+        +update_due_time(new_due_time)
+        +update_priority(new_priority)
+        +get_task_summary()
+    }
+
+    class Scheduler {
+        +Owner owner
+        +List~Task~ scheduled_tasks
+        +List~Task~ skipped_tasks
+
+        +get_all_tasks()
+        +get_incomplete_tasks()
+        +sort_tasks_by_priority()
+        +sort_tasks_by_due_time()
+        +generate_daily_plan()
+        +mark_task_complete(pet_name, task_description)
+        +get_schedule_summary()
+    }
+
+    Owner "1" *-- "0..*" Pet : owns
+    Pet "1" *-- "0..*" Task : has
+    Scheduler "1" --> "1" Owner : uses
+    Scheduler ..> Task : organizes
