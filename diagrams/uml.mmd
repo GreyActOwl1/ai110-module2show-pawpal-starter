@@ -30,9 +30,10 @@ classDiagram
         +String description
         +String due_time
         +String due_date
-        +String priority
+        +Priority priority
         +int duration_minutes
         +bool is_complete
+        +String rationale
 
         +mark_complete()
         +mark_incomplete()
@@ -55,7 +56,15 @@ classDiagram
         +get_schedule_summary()
     }
 
+    class Priority {
+        <<enumeration>>
+        LOW
+        MEDIUM
+        HIGH
+    }
+
     Owner "1" *-- "0..*" Pet : owns
     Pet "1" *-- "0..*" Task : has
     Scheduler "1" --> "1" Owner : uses
     Scheduler ..> Task : organizes
+    Task ..> Priority : uses

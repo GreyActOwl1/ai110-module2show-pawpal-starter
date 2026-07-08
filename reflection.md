@@ -29,6 +29,7 @@ The Scheduler class works across multiple pets, not just one pet. It collects ta
 
 - Did your design change during implementation?
 - If yes, describe at least one change and why you made it.
+Add missing rationale attribute to task, also added a priority class with Enum for easier sorting
 
 ---
 
